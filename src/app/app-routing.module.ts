@@ -2,23 +2,31 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { LoggedInGuard } from './guards/logged-in.guard';
 
 const routes: Routes = [
     {
         path: '',
-        component: HomeComponent,
-        canActivate: [LoggedInGuard],
+        children: [
+            {
+                path: '',
+                component: HomeComponent,
+            },
+            {
+                path: 'login',
+                component: LoginComponent,
+            },
+        ],
     },
-    {
-        path: 'login',
-        component: LoginComponent,
-    },
+
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
+    imports: [
+        RouterModule.forRoot(routes),
+    ],
+    exports: [
+        RouterModule,
+    ],
 })
 export class AppRoutingModule {
 }

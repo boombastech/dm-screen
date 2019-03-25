@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import UserCredential = firebase.auth.UserCredential;
+import { User } from 'firebase';
 
 export enum AuthenticationActionTypes {
     LoginViaFacebook = 'LoginViaFacebook',
@@ -7,21 +7,36 @@ export enum AuthenticationActionTypes {
     LoginSuccess = 'LoginSuccess',
     Logout = 'Logout',
     LogoutSuccess = 'LogoutSuccess',
+    WatchUserAction = 'WatchUserAction',
 }
 
 export class LoginViaFacebookAction implements Action {
     readonly type = AuthenticationActionTypes.LoginViaFacebook;
+
+    constructor(
+        public successRedirect: string,
+    ) {
+    }
+}
+
+export class WatchUserAction implements Action {
+    readonly type = AuthenticationActionTypes.WatchUserAction;
 }
 
 export class LoginViaGoogleAction implements Action {
     readonly type = AuthenticationActionTypes.LoginViaGoogle;
+
+    constructor(
+        public successRedirect: string,
+    ) {
+    }
 }
 
 export class LoginSuccessAction implements Action {
     readonly type = AuthenticationActionTypes.LoginSuccess;
 
     constructor(
-        public userCredential: UserCredential,
+        public user: User,
     ) {
     }
 }
@@ -40,4 +55,5 @@ export type AuthenticationAction =
     | LoginSuccessAction
     | LogoutAction
     | LogoutSuccessAction
+    | WatchUserAction
     ;
