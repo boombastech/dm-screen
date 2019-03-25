@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { LoginViaGoogleAction, LogoutAction } from './root-store/authentication-store/authentication.actions';
+import { Observable } from 'rxjs';
+import { AuthenticationService } from './authentication/authentication.service';
+import { AuthenticationState } from './root-store/authentication-store/authentication-state';
 
 @Component({
     selector: 'app-root',
@@ -8,21 +9,18 @@ import { LoginViaGoogleAction, LogoutAction } from './root-store/authentication-
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-    title = 'dm-screen';
+    private user$: Observable<AuthenticationState>;
 
     constructor(
-        private authService: Store<any>,
+        private authenticationService: AuthenticationService,
     ) {
     }
 
-    login() {
-        this.authService.dispatch(new LoginViaGoogleAction());
-    }
-
     logout() {
-        this.authService.dispatch(new LogoutAction());
+        this.authenticationService.logout();
     }
 
     ngOnInit(): void {
+        this.user$ = this.authenticationService.getUser();
     }
 }
