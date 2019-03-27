@@ -6,11 +6,11 @@ export const selectUser = createFeatureSelector<AuthenticationState>('authentica
 
 export function authenticationReducer(state = { isLoggedIn: false }, action: AuthenticationAction): AuthenticationState {
     switch (action.type) {
-        case AuthenticationActionTypes.LoginSuccess: {
-            return { isLoggedIn: true, activeUser: action.user };
+        case AuthenticationActionTypes.LoadUserSuccess: {
+            return { isLoggedIn: action.isAuthenticated };
         }
 
-        case AuthenticationActionTypes.LogoutSuccess: {
+        case AuthenticationActionTypes.WatchUserFailure: {
             return { isLoggedIn: false };
         }
 

@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { selectUser } from '../root-store/authentication-store/authentication.reducer';
+import { selectUser } from '../authentication/store/authentication.reducer';
 
 @Injectable()
 export class LoggedInGuard implements CanActivate {

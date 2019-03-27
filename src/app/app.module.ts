@@ -6,10 +6,12 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './authentication/components/login/login.component';
 import { NavbarModule } from './bulma/navbar/navbar.module';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
+import { FirebaseFirestoreModule } from './firebase/firestore/firebase-firestore.module';
 import { LoggedInGuard } from './guards/logged-in.guard';
+import { MapsModule } from './maps/maps.module';
 import { RootStoreModule } from './root-store/root-store.module';
 
 @NgModule({
@@ -22,6 +24,8 @@ import { RootStoreModule } from './root-store/root-store.module';
         BrowserModule,
         AppRoutingModule,
         NavbarModule,
+        MapsModule,
+        FirebaseFirestoreModule,
         AngularFireModule.initializeApp({
             apiKey: 'AIzaSyDUN5rqFWZU1C3NR508QGMihonH8eSHF0Q',
             authDomain: 'dm-screen-66ebf.firebaseapp.com',

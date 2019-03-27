@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../../authentication/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.sass'],
+    styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
 
@@ -15,5 +15,9 @@ export class LoginComponent {
 
     loginViaGoogle() {
         this.authenticationService.loginViaGoogle();
+    }
+
+    loginViaFacebook() {
+        this.authenticationService.loginViaFacebook();
     }
 }

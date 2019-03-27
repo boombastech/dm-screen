@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
     declarations: [],

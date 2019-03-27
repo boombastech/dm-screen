@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { AuthenticationService } from '../../../authentication/authentication.service';
-import { AuthenticationState } from '../../../root-store/authentication-store/authentication-state';
+import { AuthenticationService } from '../../../authentication/services/authentication.service';
+import { AuthenticationState } from '../../../authentication/store/authentication-state';
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.sass'],
+    styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
 

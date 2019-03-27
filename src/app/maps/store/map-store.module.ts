@@ -2,16 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AuthenticationStoreModule } from '../authentication/store/authentication-store.module';
+import { MapEffects } from './map.effects';
+import { mapReducer } from './map.reducer';
 
 @NgModule({
     declarations: [],
     imports: [
         CommonModule,
-        AuthenticationStoreModule,
-        StoreModule.forRoot({}),
-        EffectsModule.forRoot([]),
+        StoreModule.forFeature('maps', mapReducer),
+        EffectsModule.forFeature([MapEffects]),
+    ],
+    providers: [
+        MapEffects,
     ],
 })
-export class RootStoreModule {
+export class MapStoreModule {
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AuthenticationFirebaseService } from './authentication-firebase.service';
+import { FirebaseAuthenticationService } from './firebase-authentication.service';
 
 @NgModule({
     declarations: [],
@@ -10,8 +10,8 @@ import { AuthenticationFirebaseService } from './authentication-firebase.service
         AngularFireAuthModule,
     ],
     providers: [
-        AuthenticationFirebaseService,
+        FirebaseAuthenticationService,
     ],
 })
-export class AuthenticationModule {
+export class FirebaseAuthenticationModule {
 }

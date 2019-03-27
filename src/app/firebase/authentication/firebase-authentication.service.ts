@@ -5,17 +5,23 @@ import { Store } from '@ngrx/store';
 import { auth, User } from 'firebase/app';
 import { Observable } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
-import { LoginSuccessAction } from '../../root-store/authentication-store/authentication.actions';
+import { WatchUserFailureAction, WatchUserSuccessAction } from '../../authentication/store/authentication.actions';
 import UserCredential = firebase.auth.UserCredential;
 
 @Injectable()
-export class AuthenticationFirebaseService {
+export class FirebaseAuthenticationService {
 
     constructor(
         private authentication: AngularFireAuth,
         private store: Store<any>,
     ) {
-        this.authentication.user.subscribe(asdf => this.store.dispatch(new LoginSuccessAction(asdf)));
+        this.authentication.user.subscribe(user => {
+            if (user) {
+                this.store.dispatch(new WatchUserSuccessAction({ id: user.uid, displayName: user.displayName }));
+            } else {
+                this.store.dispatch(new WatchUserFailureAction());
+            }
+        });
     }
 
     getAuthState(): Observable<User | null> {
@@ -28,5 +34,9 @@ export class AuthenticationFirebaseService {
 
     logout(): Observable<void> {
         return fromPromise(this.authentication.auth.signOut());
+    }
+
+    loginViaFacebook(): Observable<UserCredential> {
+        return fromPromise(this.authentication.auth.signInWithPopup(new auth.FacebookAuthProvider()));
     }
 }
