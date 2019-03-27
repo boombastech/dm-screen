@@ -51,23 +51,6 @@ export class LoginViaFacebookAction implements Action {
     readonly type = AuthenticationActionTypes.LoginViaFacebook;
 }
 
-export class WatchUserAction implements Action {
-    readonly type = AuthenticationActionTypes.WatchUser;
-}
-
-export class WatchUserSuccessAction implements Action {
-    readonly type = AuthenticationActionTypes.WatchUserSuccess;
-
-    constructor(
-        public user: User,
-    ) {
-    }
-}
-
-export class WatchUserFailureAction implements Action {
-    readonly type = AuthenticationActionTypes.WatchUserFailure;
-}
-
 export class LoginViaGoogleAction implements Action {
     readonly type = AuthenticationActionTypes.LoginViaGoogle;
 }
@@ -87,12 +70,11 @@ export class LogoutSuccessAction implements Action {
 export type AuthenticationAction =
     | LoadUserAction
     | LoadUserSuccessAction
+    | LoadUserDetailsAction
+    | LoadUserDetailsSuccessAction
     | LoginViaGoogleAction
     | LoginViaFacebookAction
     | LoginSuccessAction
     | LogoutAction
     | LogoutSuccessAction
-    | WatchUserAction
-    | WatchUserSuccessAction
-    | WatchUserFailureAction
     ;

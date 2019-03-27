@@ -1,4 +1,4 @@
-<nav
+<nav *ngIf="authenticationState$ | async as authenticationState"
         class="navbar is-fixed-top is-light"
         role="navigation"
         aria-label="main navigation">
@@ -59,7 +59,7 @@
                     </a>
                 </div>
             </div>
-            <div class="navbar-item has-dropdown is-hoverable" *ngIf="authenticationState.isLoggedIn">
+            <div class="navbar-item has-dropdown is-hoverable" *ngIf="authenticationState.isLoggedIn && authenticationState.activeUser">
                 <a class="navbar-link">
                     <span class="icon">
                         <i class="fas fa-user"></i>

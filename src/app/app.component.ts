@@ -27,17 +27,5 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.store.dispatch(new LoadUserAction());
-
-        // delete below
-        this.user$ = this.authenticationService.getUser();
-        this.user$.subscribe(user => {
-            if (user.isLoggedIn) {
-                this.firestore.getDocument('users', user.activeUser.id).subscribe(userDoc => {
-                    console.log(userDoc);
-                    this.firestore.getCollection('users/' + user.activeUser.id + '/maps').subscribe(console.log);
-                    this.firestore.getCollection('users/' + user.activeUser.id + '/markers').subscribe(console.log);
-                });
-            }
-        });
     }
 }
