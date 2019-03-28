@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { MapInfo } from '../../maps/models/map';
-import { selectMapById } from '../../maps/store/map.reducer';
+import { MapsService } from '../../maps/services/maps.service';
 
 @Component({
     selector: 'app-home',
@@ -12,18 +11,17 @@ import { selectMapById } from '../../maps/store/map.reducer';
     styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-    private map$: Observable<MapInfo>;
+    map$: Observable<MapInfo>;
 
     constructor(
-        private store: Store<any>,
+        private mapsService: MapsService,
         private route: ActivatedRoute,
     ) {
     }
 
     ngOnInit() {
         this.map$ = this.route.params.pipe(
-            flatMap(params => this.store.select(selectMapById(params.mapId))),
+            flatMap(params => this.mapsService.getById(params.mapId)),
         );
     }
-
 }

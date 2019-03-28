@@ -10,7 +10,6 @@ export class FirebaseStorageService {
     }
 
     upload(path: string, file: File): AngularFireUploadTask {
-        console.log(path);
         return this.firebaseStorage.upload(path, file);
     }
 }
