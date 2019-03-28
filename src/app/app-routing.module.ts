@@ -20,6 +20,10 @@ const routes: Routes = [
                 path: 'upload',
                 component: UploadMapComponent,
             },
+            {
+                path: 'map/:mapId',
+                component: HomeComponent,
+            },
         ],
     },
 

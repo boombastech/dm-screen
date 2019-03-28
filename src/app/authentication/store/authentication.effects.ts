@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 import { FirebaseAuthenticationService } from '../../firebase/authentication/firebase-authentication.service';
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
+import { LoadMapsAction } from '../../maps/store/map.actions';
 import { User } from '../models/user';
 import { AuthenticationActionTypes, LoadUserAction, LoadUserDetailsAction, LoadUserDetailsSuccessAction, LoadUserSuccessAction, LoginSuccessAction, LoginViaFacebookAction, LoginViaGoogleAction, LogoutAction, LogoutSuccessAction } from './authentication.actions';
 
@@ -41,6 +42,7 @@ export class AuthenticationEffects {
                 .pipe(
                     switchMap(user => [
                         new LoadUserDetailsSuccessAction(user),
+                        new LoadMapsAction(user.id),
                     ]),
                 ),
             ));

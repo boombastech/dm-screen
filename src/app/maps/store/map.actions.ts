@@ -1,13 +1,30 @@
 import { Action } from '@ngrx/store';
+import { MapInfo } from '../models/map';
 
 export enum MapActionTypes {
-    WatchUserAction = 'WatchUserAction',
+    LoadMaps = 'LoadMaps',
+    LoadMapsSuccess = 'LoadMapsSuccess',
 }
 
-export class WatchUserAction implements Action {
-    readonly type = MapActionTypes.WatchUserAction;
+export class LoadMapsAction implements Action {
+    readonly type = MapActionTypes.LoadMaps;
+
+    constructor(
+        public uid: string,
+    ) {
+    }
+}
+
+export class LoadMapsSuccessAction implements Action {
+    readonly type = MapActionTypes.LoadMapsSuccess;
+
+    constructor(
+        public maps: MapInfo[],
+    ) {
+    }
 }
 
 export type MapAction =
-    | WatchUserAction
+    | LoadMapsAction
+    | LoadMapsSuccessAction
     ;

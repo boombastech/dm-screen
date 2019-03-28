@@ -10,8 +10,8 @@ export function authenticationReducer(state = { isLoggedIn: false }, action: Aut
             return { isLoggedIn: action.isAuthenticated };
         }
 
-        case AuthenticationActionTypes.WatchUserFailure: {
-            return { isLoggedIn: false };
+        case AuthenticationActionTypes.LoadUserDetailsSuccess: {
+            return { isLoggedIn: true, activeUser: action.user };
         }
 
         default: {
