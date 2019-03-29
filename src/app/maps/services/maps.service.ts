@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireUploadTask } from '@angular/fire/storage';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { AuthenticationService } from '../../authentication/services/authentication.service';
+import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
 import { FirebaseStorageService } from '../../firebase/storage/firebase-storage.service';
 import { MapInfo } from '../models/map';
 import { selectMapById, selectMaps } from '../store/map.reducer';
@@ -13,9 +14,14 @@ export class MapsService {
 
     constructor(
         private firebaseStorageService: FirebaseStorageService,
+        private firebaseFirestoreService: FirebaseFirestoreService,
         private authenticationService: AuthenticationService,
         private store: Store<any>,
     ) {
+    }
+
+    createId(): string {
+        return this.firebaseFirestoreService.createId();
     }
 
     upload(file: File): Observable<AngularFireUploadTask> {
@@ -32,5 +38,14 @@ export class MapsService {
 
     getById(id: string): Observable<MapInfo> {
         return this.store.select(selectMapById(id));
+    }
+
+    save(mapInfo: MapInfo): Observable<MapInfo> {
+        return this.authenticationService.getUser().pipe(
+            map(userState => this.firebaseFirestoreService.save('/users/' + userState.activeUser.id + '/maps', mapInfo.id, mapInfo)),
+            tap(() => console.log('cheesy goings on')),
+            map(() => mapInfo),
+            tap(mapInfo => console.log(mapInfo)),
+        );
     }
 }

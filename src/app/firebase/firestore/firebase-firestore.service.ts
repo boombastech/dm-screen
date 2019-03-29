@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { fromPromise } from 'rxjs/internal-compatibility';
 
 @Injectable()
 export class FirebaseFirestoreService {
@@ -15,8 +15,8 @@ export class FirebaseFirestoreService {
         return this.angularFirestore.createId();
     }
 
-    save<T>(path: string, id: string = this.createId(), value: T) {
-        this.angularFirestore.collection(path).doc(id).set(value);
+    save<T>(path: string, id: string = this.createId(), value: T): Observable<void> {
+        return fromPromise(this.angularFirestore.collection(path).doc(id).set(value));
     }
 
     getDocument<T>(collection: string, documentId: string): Observable<T> {

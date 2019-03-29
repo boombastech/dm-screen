@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AuthenticationModule } from '../authentication/authentication.module';
@@ -8,16 +9,18 @@ import { EditMapComponent } from './components/edit-map/edit-map.component';
 import { LibraryComponent } from './components/library/library.component';
 import { MapListComponent } from './components/map-list/map-list.component';
 import { MapTileComponent } from './components/map-tile/map-tile.component';
-import { UploadMapComponent } from './components/upload-map/upload-map.component';
 import { MapsService } from './services/maps.service';
+import { CreateMapComponent } from './components/create-map/create-map.component';
+import { MapFormComponent } from './components/map-form/map-form.component';
 
 @NgModule({
     declarations: [
-        UploadMapComponent,
         LibraryComponent,
         MapListComponent,
         MapTileComponent,
         EditMapComponent,
+        CreateMapComponent,
+        MapFormComponent,
     ],
     imports: [
         BrowserModule,
@@ -25,13 +28,13 @@ import { MapsService } from './services/maps.service';
         RouterModule,
         FirebaseStorageModule,
         AuthenticationModule,
+        ReactiveFormsModule,
     ],
     providers: [
         MapsService,
     ],
     bootstrap: [],
     exports: [
-        UploadMapComponent,
         LibraryComponent,
         EditMapComponent,
     ],

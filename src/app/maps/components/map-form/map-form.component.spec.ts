@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UploadMapComponent } from './upload-map.component';
+import { MapFormComponent } from './map-form.component';
 
-describe('UploadMapComponent', () => {
-  let component: UploadMapComponent;
-  let fixture: ComponentFixture<UploadMapComponent>;
+describe('MapFormComponent', () => {
+  let component: MapFormComponent;
+  let fixture: ComponentFixture<MapFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UploadMapComponent ]
+      declarations: [ MapFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UploadMapComponent);
+    fixture = TestBed.createComponent(MapFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

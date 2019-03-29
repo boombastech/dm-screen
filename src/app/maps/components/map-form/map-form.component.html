@@ -1,0 +1,48 @@
+<div class="columns">
+    <div class="column is-4">
+        <div *ngIf="percentage$ | async as percentage">
+            <progress *ngIf="percentage && percentage < 100" class="progress" [value]="percentage" max="100"></progress>
+        </div>
+        <div class="file is-centered is-boxed" style="margin-top: 100px;" *ngIf="!this.form.controls.downloadUrl || !uploading">
+            <label class="file-label">
+                <input class="file-input" type="file" name="map-image" (change)="onFileUpload($event.target.files)" accept="image/jpg, image/jpeg">
+                <span class="file-cta">
+                    <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">Choose a file…</span>
+                </span>
+            </label>
+        </div>
+        <figure class="image" *ngIf="this.form.controls.downloadUrl.value">
+            <img [src]="this.form.controls.downloadUrl.value">
+        </figure>
+    </div>
+    <div class="column is=8">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" disabled="">
+            <div class="field">
+                <label for="form.name" class="label">Name</label>
+                <div class="control has-icons-right">
+                    <input id="form.name" class="input" type="text" formControlName="name" [ngClass]="{'is-danger': form.controls.name.invalid && form.controls.name.dirty }">
+                    <span *ngIf="form.controls.name.invalid  && form.controls.name.dirty" class="icon is-small is-right has-text-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+            </span>
+                </div>
+                <p *ngIf="form.controls.name.errors && form.controls.name.errors.required && form.controls.name.dirty" class="help is-danger">This field is required.</p>
+            </div>
+            <div class="field">
+                <label for="form.description" class="label">Description</label>
+                <div class="control">
+                    <textarea id="form.description" class="textarea" formControlName="description"></textarea>
+                </div>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <button type="submit" class="button is-success" [disabled]="form.invalid || submitted">
+                        Submit
+                    </button>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
