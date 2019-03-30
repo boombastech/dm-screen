@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
-import { MapInfo } from '../../maps/models/map';
-import { MapsService } from '../../maps/services/maps.service';
+import { MapInfo } from '../../models/map';
+import { MapsService } from '../../services/maps.service';
 
 @Component({
     selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
+    templateUrl: './map-view.component.html',
+    styleUrls: ['./map-view.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class MapViewComponent implements OnInit {
     map$: Observable<MapInfo>;
 
     constructor(

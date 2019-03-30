@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './authentication/components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
 import { CreateMapComponent } from './maps/components/create-map/create-map.component';
 import { EditMapComponent } from './maps/components/edit-map/edit-map.component';
 import { MapListComponent } from './maps/components/map-list/map-list.component';
+import { MapViewComponent } from './maps/components/map-view/map-view.component';
 
 const routes: Routes = [
     {
@@ -12,7 +12,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: HomeComponent,
+                component: MapViewComponent,
             },
             {
                 path: 'login',
@@ -24,7 +24,7 @@ const routes: Routes = [
             },
             {
                 path: 'maps/view/:mapId',
-                component: HomeComponent,
+                component: MapViewComponent,
             },
             {
                 path: 'maps/create',
