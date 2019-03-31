@@ -12,6 +12,7 @@ import { MapsService } from '../../services/maps.service';
 })
 export class MapViewComponent implements OnInit {
     map$: Observable<MapInfo>;
+    customZoom = 1;
 
     constructor(
         private mapsService: MapsService,

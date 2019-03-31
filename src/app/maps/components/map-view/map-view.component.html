@@ -1,5 +1,7 @@
 <section class="hero is-fullheight-with-navbar" *ngIf="map$ | async as map">
-    <div>
-        <img class="map" [src]="map.downloadUrl" />
+    <div class="map-wrapper" [ngStyle]="{'transform': 'scale(' + customZoom + ')'}">
+        <img [alt]="map.name" class="map" [src]="map.downloadUrl" />
     </div>
 </section>
+
+<app-map-editor-tools [(zoom)]="customZoom"></app-map-editor-tools>

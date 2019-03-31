@@ -1,0 +1,30 @@
+<nav class="navbar is-fixed-bottom" role="navigation" aria-label="map tools">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div class="navbar-menu">
+        <div class="navbar-start">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary">
+                        <strong>Add marker</strong>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <span class="icon" (click)="zoomOut()">
+                    <i class="fas fa-search-minus"></i>
+                </span>
+                <input type="range" [ngModel]="zoom" (ngModelChange)="onZoomChange($event)" min="0.01" max="2.00" [step]="step"/>
+                <span class="icon" (click)="zoomIn()">
+                    <i class="fas fa-search-plus"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</nav>

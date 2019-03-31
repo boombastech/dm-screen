@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { FirebaseStorageModule } from '../firebase/storage/firebase-storage.module';
+import { CreateMapComponent } from './components/create-map/create-map.component';
 import { EditMapComponent } from './components/edit-map/edit-map.component';
 import { LibraryComponent } from './components/library/library.component';
+import { MapEditorToolsComponent } from './components/map-editor-tools/map-editor-tools.component';
+import { MapFormComponent } from './components/map-form/map-form.component';
 import { MapListComponent } from './components/map-list/map-list.component';
 import { MapTileComponent } from './components/map-tile/map-tile.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
 import { MapsService } from './services/maps.service';
-import { CreateMapComponent } from './components/create-map/create-map.component';
-import { MapFormComponent } from './components/map-form/map-form.component';
 
 @NgModule({
     declarations: [
@@ -23,9 +24,11 @@ import { MapFormComponent } from './components/map-form/map-form.component';
         EditMapComponent,
         CreateMapComponent,
         MapFormComponent,
+        MapEditorToolsComponent,
     ],
     imports: [
         BrowserModule,
+        FormsModule,
         CommonModule,
         RouterModule,
         FirebaseStorageModule,
