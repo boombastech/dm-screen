@@ -7,19 +7,25 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class MapEditorToolsComponent implements OnInit {
 
-    show = false;
-
     @Input()
     zoom = 1;
 
     @Output()
-    zoomChange: EventEmitter<number> = new EventEmitter<number>();
+    zoomChange: EventEmitter<number> = new EventEmitter();
+
+    @Output()
+    addMarkerFlag: EventEmitter<void> = new EventEmitter();
+
     step = 0.01;
 
     constructor() {
     }
 
     ngOnInit() {
+    }
+
+    addMarker() {
+        this.addMarkerFlag.emit();
     }
 
     onZoomChange(value: number) {

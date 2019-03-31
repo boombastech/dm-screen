@@ -1,7 +1,19 @@
 <section class="hero is-fullheight-with-navbar" *ngIf="map$ | async as map">
-    <div class="map-wrapper" [ngStyle]="{'transform': 'scale(' + customZoom + ')'}">
-        <img [alt]="map.name" class="map" [src]="map.downloadUrl" />
+    <div
+            class="map-wrapper"
+            [ngStyle]="{'transform': 'scale(' + customZoom + ')'}"
+            [ngClass]="{'add-location': addMarkerFlag}"
+    >
+        <img
+                class="map"
+                [src]="map.downloadUrl"
+                [alt]="map.name"
+                (click)="placeLocationMarker($event, map.id)"
+        />
     </div>
 </section>
 
-<app-map-editor-tools [(zoom)]="customZoom"></app-map-editor-tools>
+<app-map-editor-tools
+        [(zoom)]="customZoom"
+        (addMarkerFlag)="handleAddMarker()"
+></app-map-editor-tools>

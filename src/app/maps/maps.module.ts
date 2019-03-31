@@ -14,6 +14,7 @@ import { MapListComponent } from './components/map-list/map-list.component';
 import { MapTileComponent } from './components/map-tile/map-tile.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
 import { MapsService } from './services/maps.service';
+import { MarkerService } from './services/marker.service';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { MapsService } from './services/maps.service';
     ],
     providers: [
         MapsService,
+        MarkerService,
     ],
     bootstrap: [],
     exports: [

@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import { AngularFireUploadTask } from '@angular/fire/storage';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../../authentication/services/authentication.service';
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
-import { FirebaseStorageService } from '../../firebase/storage/firebase-storage.service';
-import { MapInfo } from '../models/map';
 import { selectMapById, selectMaps } from '../map-store/map.reducer';
+import { MapInfo } from '../models/map';
+import { WayPoint } from '../models/waypoint';
 
 @Injectable()
-export class MapsService {
+export class MarkerService {
 
     constructor(
-        private firebaseStorageService: FirebaseStorageService,
         private firebaseFirestoreService: FirebaseFirestoreService,
         private authenticationService: AuthenticationService,
         private store: Store<any>,
@@ -22,12 +20,6 @@ export class MapsService {
 
     createId(): string {
         return this.firebaseFirestoreService.createId();
-    }
-
-    upload(file: File): Observable<AngularFireUploadTask> {
-        return this.authenticationService.getUser().pipe(
-            map(userState => this.firebaseStorageService.upload('/images/' + userState.activeUser.id + '/' + file.name, file)),
-        );
     }
 
     getAll(): Observable<MapInfo[]> {
@@ -40,10 +32,23 @@ export class MapsService {
         return this.store.select(selectMapById(id));
     }
 
-    save(mapInfo: MapInfo): Observable<MapInfo> {
-        return this.authenticationService.getUser().pipe(
-            map(userState => this.firebaseFirestoreService.save('/users/' + userState.activeUser.id + '/maps', mapInfo.id, mapInfo)),
-            map(() => mapInfo),
+    save(marker: WayPoint, userId: string): Observable<WayPoint> {
+        if (!marker.id) {
+            marker.id = this.createId();
+        }
+        console.log('saving');
+
+        return this.firebaseFirestoreService.save('/users/' + userId + '/marker', marker.id, marker).pipe(
+            map(() => marker),
         );
+
+        // return this.authenticationService.getUser().pipe(
+        //     map(userState => this.firebaseFirestoreService.save('/users/' + userState.activeUser.id + '/marker', marker.id, marker)),
+        //     map(() => marker),
+        // );
+    }
+
+    private getWaypointPath(userId: string): string {
+        return `/users/${userId}/markers`;
     }
 }

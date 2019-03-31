@@ -3,6 +3,7 @@ export interface WayPoint {
     coordinates: WayPointCoordinates;
     name: string;
     description?: string;
+    mapId: string;
 }
 
 export interface WayPointCoordinates {
