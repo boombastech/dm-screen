@@ -8,11 +8,6 @@ export enum MapActionTypes {
 
 export class LoadMapsAction implements Action {
     readonly type = MapActionTypes.LoadMaps;
-
-    constructor(
-        public uid: string,
-    ) {
-    }
 }
 
 export class LoadMapsSuccessAction implements Action {

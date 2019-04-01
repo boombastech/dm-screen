@@ -18,8 +18,8 @@ export class LibraryComponent implements OnInit {
 
     ngOnInit() {
         this.authenticationService.getUser().pipe(
-            filter(state => !!state.activeUser),
-            flatMap(state => this.angularFireStorage.ref('images/' + state.activeUser.id).getMetadata()),
+            filter(user => !!user),
+            flatMap(user => this.angularFireStorage.ref('images/' + user.id).getMetadata()),
         ).subscribe(console.log);
     }
 

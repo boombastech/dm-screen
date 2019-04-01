@@ -43,8 +43,8 @@ export class AuthenticationEffects {
                 .pipe(
                     switchMap(user => [
                         new LoadUserDetailsSuccessAction(user),
-                        new LoadMapsAction(user.id),
-                        new LoadMarkersAction(user.id),
+                        new LoadMapsAction(),
+                        new LoadMarkersAction(),
                     ]),
                 ),
             ));

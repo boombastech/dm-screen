@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { AuthenticationService } from '../../authentication/services/authentication.service';
+import { selectUser } from '../../authentication/store/authentication.reducer';
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
 import { MapInfo } from '../models/map';
 import { LoadMapsAction, LoadMapsSuccessAction, MapActionTypes } from './map.actions';
@@ -12,7 +14,8 @@ export class MapEffects {
 
     constructor(
         private actions$: Actions,
-        private firebaseFirestoreService: FirebaseFirestoreService
+        private firebaseFirestoreService: FirebaseFirestoreService,
+        private authenticationService: AuthenticationService,
     ) {
     }
 
@@ -20,7 +23,8 @@ export class MapEffects {
     loadMapsAction$: Observable<Action> = this.actions$
         .pipe(
             ofType<LoadMapsAction>(MapActionTypes.LoadMaps),
-            switchMap(action => this.firebaseFirestoreService.getCollection<MapInfo>('users/' + action.uid + '/maps')
+            withLatestFrom(this.authenticationService.getUser()),
+            switchMap(([action, user]) => this.firebaseFirestoreService.getCollection<MapInfo>(`users/${user.id}/maps`)
                 .pipe(
                     map(payload => new LoadMapsSuccessAction(payload)),
                 ),

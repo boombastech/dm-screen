@@ -8,11 +8,6 @@ export enum MarkersActionTypes {
 
 export class LoadMarkersAction implements Action {
     readonly type = MarkersActionTypes.LoadMarkers;
-
-    constructor(
-        public userId: string,
-    ) {
-    }
 }
 
 export class LoadMarkersSuccessAction implements Action {

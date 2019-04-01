@@ -32,8 +32,6 @@ export class MapViewComponent implements OnInit {
             map(params => params.mapId),
             flatMap(mapId => this.mapsService.getById(mapId)),
         );
-
-        this.authenticationService.getUser().subscribe(userState => this.userId = userState.activeUser.id);
     }
 
     handleAddMarker() {

@@ -11,7 +11,6 @@ export const selectMapById = (mapId: string) => {
 export function mapReducer(state = { maps: [] }, action: MapAction): MapState {
     switch (action.type) {
         case MapActionTypes.LoadMapsSuccess: {
-            console.log('cheese');
             return { maps: action.maps };
         }
 
