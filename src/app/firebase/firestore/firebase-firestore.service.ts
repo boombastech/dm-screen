@@ -15,7 +15,7 @@ export class FirebaseFirestoreService {
         return this.angularFirestore.createId();
     }
 
-    save<T>(path: string, id: string = this.createId(), value: T): Observable<void> {
+    save(path: string, id: string = this.createId(), value: any): Observable<void> {
         return fromPromise(this.angularFirestore.collection(path).doc(id).set(value));
     }
 

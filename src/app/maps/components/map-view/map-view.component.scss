@@ -8,6 +8,7 @@
 
 .map-wrapper {
   transform-origin: 0 0;
+  position: relative;
 
   &.add-location {
     cursor: crosshair;

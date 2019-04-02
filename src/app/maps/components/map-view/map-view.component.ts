@@ -36,6 +36,7 @@ export class MapViewComponent implements OnInit {
     }
 
     placeLocationMarker(event: MouseEvent, mapId: string) {
+        console.log(`coords - x: ${event.offsetX}, y: ${event.offsetY}`);
         if (this.addMarkerFlag) {
             const waypoint: WayPoint = {
                 mapId,

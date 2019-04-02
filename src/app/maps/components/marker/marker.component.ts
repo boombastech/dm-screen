@@ -15,5 +15,6 @@ export class MarkerComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(`marker ${this.marker.id} initialized`);
     }
 }
