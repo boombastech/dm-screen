@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MapInfo } from '../../models/map';
-import { MapsService } from '../../services/maps.service';
+import { MapService } from '../../services/map.service';
 
 @Component({
     selector: 'app-map-list',
@@ -12,7 +12,7 @@ export class MapListComponent implements OnInit {
     maps$: Observable<MapInfo[]>;
 
     constructor(
-        private mapsService: MapsService,
+        private mapsService: MapService,
     ) {
     }
 

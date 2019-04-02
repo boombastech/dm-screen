@@ -1,12 +1,12 @@
-export interface WayPoint {
+export interface Marker {
     id?: string;
-    coordinates: WayPointCoordinates;
+    coordinates: MarkerCoordinates;
     name: string;
     description?: string;
     mapId: string;
 }
 
-export interface WayPointCoordinates {
+export interface MarkerCoordinates {
     x: number;
     y: number;
 }

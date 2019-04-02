@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MapInfo } from '../../models/map';
+import { MapService } from '../../services/map.service';
 
 @Component({
     selector: 'app-map-tile',
@@ -11,9 +12,15 @@ export class MapTileComponent implements OnInit {
     @Input()
     map: MapInfo;
 
-    constructor() {
+    constructor(
+        private mapService: MapService,
+    ) {
     }
 
     ngOnInit() {
+    }
+
+    deleteMap() {
+        this.mapService.delete(this.map);
     }
 }

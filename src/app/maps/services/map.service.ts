@@ -6,12 +6,12 @@ import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../../authentication/services/authentication.service';
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
 import { FirebaseStorageService } from '../../firebase/storage/firebase-storage.service';
-import { SaveMapAction } from '../map-store/map.actions';
+import { DeleteMapAction, SaveMapAction } from '../map-store/map.actions';
 import { selectMapById, selectMaps } from '../map-store/map.reducer';
 import { MapInfo } from '../models/map';
 
 @Injectable()
-export class MapsService {
+export class MapService {
 
     constructor(
         private firebaseStorageService: FirebaseStorageService,
@@ -43,6 +43,11 @@ export class MapsService {
 
     save(mapInfo: MapInfo): Observable<MapInfo> {
         this.store.dispatch(new SaveMapAction(mapInfo));
+        return this.getById(mapInfo.id);
+    }
+
+    delete(mapInfo: MapInfo): Observable<MapInfo> {
+        this.store.dispatch(new DeleteMapAction(mapInfo));
         return this.getById(mapInfo.id);
     }
 }

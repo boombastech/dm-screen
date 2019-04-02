@@ -19,6 +19,10 @@ export class FirebaseFirestoreService {
         return fromPromise(this.angularFirestore.collection(path).doc(id).set(value));
     }
 
+    delete(path: string, id: string): Observable<void> {
+        return fromPromise(this.angularFirestore.collection(path).doc(id).delete());
+    }
+
     getDocument<T>(collection: string, documentId: string): Observable<T> {
         return this.angularFirestore.collection<T>(collection).doc<T>(documentId).valueChanges();
     }

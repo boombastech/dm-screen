@@ -7,7 +7,7 @@ import { AuthenticationService } from '../../authentication/services/authenticat
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
 import { FirebaseStorageService } from '../../firebase/storage/firebase-storage.service';
 import { MapInfo } from '../models/map';
-import { LoadMapsAction, LoadMapsSuccessAction, MapActionTypes, SaveMapAction, SaveMapSuccessAction } from './map.actions';
+import { DeleteMapAction, LoadMapsAction, LoadMapsSuccessAction, MapActionTypes, SaveMapAction, SaveMapSuccessAction } from './map.actions';
 
 @Injectable()
 export class MapEffects {
@@ -37,6 +37,17 @@ export class MapEffects {
             ofType<SaveMapAction>(MapActionTypes.SaveMap),
             withLatestFrom(this.authenticationService.getUser()),
             switchMap(([action, user]) => this.firebaseFirestoreService.save(`users/${user.id}/maps`, action.mapInfo.id, action.mapInfo)
+                .pipe(
+                    map(() => new SaveMapSuccessAction()),
+                ),
+            ));
+
+    @Effect()
+    deleteMapAction$: Observable<Action> = this.actions$
+        .pipe(
+            ofType<DeleteMapAction>(MapActionTypes.DeleteMap),
+            withLatestFrom(this.authenticationService.getUser()),
+            switchMap(([action, user]) => this.firebaseFirestoreService.delete(`users/${user.id}/maps`, action.mapInfo.id)
                 .pipe(
                     map(() => new SaveMapSuccessAction()),
                 ),

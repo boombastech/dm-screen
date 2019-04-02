@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { MapInfo } from '../../models/map';
-import { MapsService } from '../../services/maps.service';
+import { MapService } from '../../services/map.service';
 
 @Component({
     selector: 'app-edit-map',
@@ -14,7 +14,7 @@ export class EditMapComponent implements OnInit {
     map$: Observable<MapInfo>;
 
     constructor(
-        private mapsService: MapsService,
+        private mapsService: MapService,
         private route: ActivatedRoute,
         private router: Router,
     ) {

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WayPoint } from '../../models/waypoint';
+import { Marker } from '../../models/marker';
 import { MarkerService } from '../../services/marker.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class MarkerContainerComponent implements OnInit {
     @Input()
     mapId: string;
 
-    markers$: Observable<WayPoint[]>;
+    markers$: Observable<Marker[]>;
 
     constructor(
         private markerService: MarkerService,

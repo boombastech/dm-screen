@@ -4,14 +4,13 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../../authentication/services/authentication.service';
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
-import { MarkerState } from '../marker-store/marker-state';
 import { SaveMarkerAction } from '../marker-store/marker.actions';
 import { selectMarkerByMapId, selectMarkers } from '../marker-store/marker.reducer';
-import { WayPoint } from '../models/waypoint';
+import { Marker } from '../models/marker';
 
 @Injectable()
 export class MarkerService {
-    private markers: Observable<WayPoint[]>;
+    private markers: Observable<Marker[]>;
 
     constructor(
         private firebaseFirestoreService: FirebaseFirestoreService,
@@ -27,7 +26,7 @@ export class MarkerService {
         return this.firebaseFirestoreService.createId();
     }
 
-    getAll(mapId?: string): Observable<WayPoint[]> {
+    getAll(mapId?: string): Observable<Marker[]> {
         return this.markers.pipe(
             map(markers => {
                 if (mapId) {
@@ -38,11 +37,11 @@ export class MarkerService {
         );
     }
 
-    getById(id: string): Observable<WayPoint> {
+    getById(id: string): Observable<Marker> {
         return this.store.select(selectMarkerByMapId(id));
     }
 
-    save(marker: WayPoint): Observable<WayPoint> {
+    save(marker: Marker): Observable<Marker> {
         if (!marker.id) {
             marker.id = this.createId();
         }

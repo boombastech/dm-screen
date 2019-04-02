@@ -13,7 +13,7 @@ import { MapFormComponent } from './components/map-form/map-form.component';
 import { MapListComponent } from './components/map-list/map-list.component';
 import { MapTileComponent } from './components/map-tile/map-tile.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
-import { MapsService } from './services/maps.service';
+import { MapService } from './services/map.service';
 import { MarkerService } from './services/marker.service';
 import { MarkerContainerComponent } from './components/marker-container/marker-container.component';
 import { MarkerComponent } from './components/marker/marker.component';
@@ -41,7 +41,7 @@ import { MarkerComponent } from './components/marker/marker.component';
         ReactiveFormsModule,
     ],
     providers: [
-        MapsService,
+        MapService,
         MarkerService,
     ],
     bootstrap: [],

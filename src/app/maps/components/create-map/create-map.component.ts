@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MapInfo } from '../../models/map';
-import { MapsService } from '../../services/maps.service';
+import { MapService } from '../../services/map.service';
 
 @Component({
     selector: 'app-create-map',
@@ -17,7 +17,7 @@ export class CreateMapComponent implements OnInit {
     };
 
     constructor(
-        private mapsService: MapsService,
+        private mapsService: MapService,
         private router: Router,
     ) {
     }

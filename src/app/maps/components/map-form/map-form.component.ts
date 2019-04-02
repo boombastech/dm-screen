@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { MapInfo } from '../../models/map';
-import { MapsService } from '../../services/maps.service';
+import { MapService } from '../../services/map.service';
 
 @Component({
     selector: 'app-map-form',
@@ -26,7 +26,7 @@ export class MapFormComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private mapsService: MapsService,
+        private mapsService: MapService,
     ) {
     }
 

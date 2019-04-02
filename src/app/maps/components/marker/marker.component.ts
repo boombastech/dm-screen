@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WayPoint } from '../../models/waypoint';
+import { Marker } from '../../models/marker';
 
 @Component({
     selector: 'app-marker',
@@ -9,7 +9,7 @@ import { WayPoint } from '../../models/waypoint';
 export class MarkerComponent implements OnInit {
 
     @Input()
-    marker: WayPoint;
+    marker: Marker;
 
     constructor() {
     }

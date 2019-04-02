@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { flatMap, map } from 'rxjs/operators';
 import { MapInfo } from '../../models/map';
-import { WayPoint } from '../../models/waypoint';
-import { MapsService } from '../../services/maps.service';
+import { Marker } from '../../models/marker';
+import { MapService } from '../../services/map.service';
 import { MarkerService } from '../../services/marker.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class MapViewComponent implements OnInit {
     addMarkerFlag = false;
 
     constructor(
-        private mapsService: MapsService,
+        private mapsService: MapService,
         private markerService: MarkerService,
         private route: ActivatedRoute,
     ) {
@@ -38,7 +38,7 @@ export class MapViewComponent implements OnInit {
     placeLocationMarker(event: MouseEvent, mapId: string) {
         console.log(`coords - x: ${event.offsetX}, y: ${event.offsetY}`);
         if (this.addMarkerFlag) {
-            const waypoint: WayPoint = {
+            const waypoint: Marker = {
                 mapId,
                 coordinates: { x: event.offsetX, y: event.offsetY },
                 name: 'New Waypoint',

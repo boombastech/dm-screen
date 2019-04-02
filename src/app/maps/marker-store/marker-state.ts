@@ -1,5 +1,5 @@
-import { WayPoint } from '../models/waypoint';
+import { Marker } from '../models/marker';
 
 export interface MarkerState {
-    markers: WayPoint[];
+    markers: Marker[];
 }
