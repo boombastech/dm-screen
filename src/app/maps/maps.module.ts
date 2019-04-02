@@ -15,6 +15,8 @@ import { MapTileComponent } from './components/map-tile/map-tile.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
 import { MapsService } from './services/maps.service';
 import { MarkerService } from './services/marker.service';
+import { MarkerContainerComponent } from './components/marker-container/marker-container.component';
+import { MarkerComponent } from './components/marker/marker.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +28,8 @@ import { MarkerService } from './services/marker.service';
         CreateMapComponent,
         MapFormComponent,
         MapEditorToolsComponent,
+        MarkerContainerComponent,
+        MarkerComponent,
     ],
     imports: [
         BrowserModule,

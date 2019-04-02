@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action, Store } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { AuthenticationService } from '../../authentication/services/authentication.service';
-import { selectUser } from '../../authentication/store/authentication.reducer';
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
+import { FirebaseStorageService } from '../../firebase/storage/firebase-storage.service';
 import { MapInfo } from '../models/map';
-import { LoadMapsAction, LoadMapsSuccessAction, MapActionTypes } from './map.actions';
+import { LoadMapsAction, LoadMapsSuccessAction, MapActionTypes, SaveMapAction, SaveMapSuccessAction } from './map.actions';
 
 @Injectable()
 export class MapEffects {
@@ -15,6 +15,7 @@ export class MapEffects {
     constructor(
         private actions$: Actions,
         private firebaseFirestoreService: FirebaseFirestoreService,
+        private firebaseStorageService: FirebaseStorageService,
         private authenticationService: AuthenticationService,
     ) {
     }
@@ -27,6 +28,17 @@ export class MapEffects {
             switchMap(([action, user]) => this.firebaseFirestoreService.getCollection<MapInfo>(`users/${user.id}/maps`)
                 .pipe(
                     map(payload => new LoadMapsSuccessAction(payload)),
+                ),
+            ));
+
+    @Effect()
+    saveMapAction$: Observable<Action> = this.actions$
+        .pipe(
+            ofType<SaveMapAction>(MapActionTypes.SaveMap),
+            withLatestFrom(this.authenticationService.getUser()),
+            switchMap(([action, user]) => this.firebaseFirestoreService.save(`users/${user.id}/maps`, action.mapInfo.id, action.mapInfo)
+                .pipe(
+                    map(() => new SaveMapSuccessAction()),
                 ),
             ));
 }

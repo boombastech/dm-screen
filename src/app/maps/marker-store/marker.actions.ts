@@ -2,6 +2,8 @@ import { Action } from '@ngrx/store';
 import { WayPoint } from '../models/waypoint';
 
 export enum MarkersActionTypes {
+    SaveMarker = 'SaveMarker',
+    SaveMarkerSuccess = 'SaveMarkerSuccess',
     LoadMarkers = 'LoadMarkers',
     LoadMarkersSuccess = 'LoadMarkersSuccess',
 }
@@ -19,7 +21,22 @@ export class LoadMarkersSuccessAction implements Action {
     }
 }
 
+export class SaveMarkerAction implements Action {
+    readonly type = MarkersActionTypes.SaveMarker;
+
+    constructor(
+        public marker: WayPoint,
+    ) {
+    }
+}
+
+export class SaveMarkerSuccessAction implements Action {
+    readonly type = MarkersActionTypes.SaveMarkerSuccess;
+}
+
 export type MarkersAction =
     | LoadMarkersAction
     | LoadMarkersSuccessAction
+    | SaveMarkerAction
+    | SaveMarkerSuccessAction
     ;

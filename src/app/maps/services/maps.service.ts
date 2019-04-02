@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../../authentication/services/authentication.service';
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
 import { FirebaseStorageService } from '../../firebase/storage/firebase-storage.service';
+import { SaveMapAction } from '../map-store/map.actions';
 import { selectMapById, selectMaps } from '../map-store/map.reducer';
 import { MapInfo } from '../models/map';
 
@@ -24,9 +25,9 @@ export class MapsService {
         return this.firebaseFirestoreService.createId();
     }
 
-    upload(file: File): Observable<AngularFireUploadTask> {
+    upload(file: File, name: string): Observable<AngularFireUploadTask> {
         return this.authenticationService.getUser().pipe(
-            map(user => this.firebaseStorageService.upload('/images/' + user.id + '/' + file.name, file)),
+            map(user => this.firebaseStorageService.upload(`/images/${user.id}/${name}`, file)),
         );
     }
 
@@ -41,9 +42,7 @@ export class MapsService {
     }
 
     save(mapInfo: MapInfo): Observable<MapInfo> {
-        return this.authenticationService.getUser().pipe(
-            map(user => this.firebaseFirestoreService.save(`/users/${user.id}/maps`, mapInfo.id, mapInfo)),
-            map(() => mapInfo),
-        );
+        this.store.dispatch(new SaveMapAction(mapInfo));
+        return this.getById(mapInfo.id);
     }
 }

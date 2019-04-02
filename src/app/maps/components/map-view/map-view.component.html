@@ -11,6 +11,7 @@
                 (click)="placeLocationMarker($event, map.id)"
         />
     </div>
+    <app-marker-container [mapId]="map.id"></app-marker-container>
 </section>
 
 <app-map-editor-tools

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../../../authentication/models/user';
 import { AuthenticationService } from '../../../authentication/services/authentication.service';
-import { AuthenticationState } from '../../../authentication/store/authentication-state';
 
 @Component({
     selector: 'app-navbar',
@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
 
     showMenu = false;
 
-    authenticationState$: Observable<AuthenticationState>;
+    user$: Observable<User>;
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -28,6 +28,6 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.authenticationState$ = this.authenticationService.getUser();
+        this.user$ = this.authenticationService.getUser();
     }
 }

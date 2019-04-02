@@ -27,8 +27,3 @@ export class FirebaseFirestoreService {
         return this.angularFirestore.collection<T>(collection).valueChanges();
     }
 }
-
-export interface FirestoreItem<T> {
-    id: string;
-    data: T;
-}

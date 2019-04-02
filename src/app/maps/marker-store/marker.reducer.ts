@@ -4,7 +4,7 @@ import { MarkersAction, MarkersActionTypes } from './marker.actions';
 
 export const selectMarkers = createFeatureSelector<MarkerState>('markers');
 
-export const selectMarkersByMapId = (mapId: string) => {
+export const selectMarkerByMapId = (mapId: string) => {
     return createSelector(selectMarkers, state => state.markers.find(marker => marker.mapId === mapId));
 };
 
@@ -14,7 +14,7 @@ export function markerReducer(state = { markers: [] }, action: MarkersAction): M
             const markerIds = action.markers.map(marker => marker.id);
             const stateWithoutNewMarkers = state.markers.filter(marker => markerIds.indexOf(marker.id) === -1);
             return {
-                markers: [...stateWithoutNewMarkers, action.markers],
+                markers: [...stateWithoutNewMarkers, ...action.markers],
             };
         }
 

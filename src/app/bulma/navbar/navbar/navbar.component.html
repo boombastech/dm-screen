@@ -1,4 +1,4 @@
-<nav *ngIf="authenticationState$ | async as authenticationState"
+<nav *ngIf="user$ | async as user"
      class="navbar is-fixed-top is-light"
      role="navigation"
      aria-label="main navigation">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="navbar-end">
-            <div class="navbar-item" *ngIf="!authenticationState.isLoggedIn">
+            <div class="navbar-item" *ngIf="!user">
                 <div class="buttons">
                     <a class="button is-primary" routerLink="/login" (click)="toggleMenu()">
                         <span class="icon">
@@ -58,12 +58,12 @@
                     </a>
                 </div>
             </div>
-            <div class="navbar-item has-dropdown is-hoverable" *ngIf="authenticationState.isLoggedIn && authenticationState.activeUser">
+            <div class="navbar-item has-dropdown is-hoverable" *ngIf="user">
                 <a class="navbar-link" (click)="toggleMenu()">
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
-                    {{ authenticationState.activeUser.displayName }}
+                    {{ user.displayName }}
                 </a>
 
                 <div class="navbar-dropdown">

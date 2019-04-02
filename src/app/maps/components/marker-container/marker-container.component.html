@@ -1,0 +1,5 @@
+<ul *ngIf="markers$ | async as markers">
+    <li *ngFor="let marker of markers">
+        <app-marker [marker]="marker"></app-marker>
+    </li>
+</ul>
