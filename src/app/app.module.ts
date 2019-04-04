@@ -7,22 +7,26 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './authentication/components/login/login.component';
+import { ModalModule } from './bulma/modal/modal.module';
 import { NavbarModule } from './bulma/navbar/navbar.module';
 import { FirebaseFirestoreModule } from './firebase/firestore/firebase-firestore.module';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { MapsModule } from './maps/maps.module';
 import { RootStoreModule } from './root-store/root-store.module';
+import { SimpleModalComponent } from './simple-modal/simple-modal.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
+        SimpleModalComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         NavbarModule,
         MapsModule,
+        ModalModule,
         FirebaseFirestoreModule,
         AngularFireModule.initializeApp({
             apiKey: 'AIzaSyDUN5rqFWZU1C3NR508QGMihonH8eSHF0Q',
@@ -34,6 +38,9 @@ import { RootStoreModule } from './root-store/root-store.module';
         }),
         RootStoreModule,
         !environment.production ? StoreDevtoolsModule.instrument() : [],
+    ],
+    entryComponents: [
+        SimpleModalComponent,
     ],
     providers: [
         LoggedInGuard,

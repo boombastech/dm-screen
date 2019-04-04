@@ -30,4 +30,12 @@ export class NavbarComponent implements OnInit {
     ngOnInit(): void {
         this.user$ = this.authenticationService.getUser();
     }
+
+    loginViaGoogle() {
+        this.authenticationService.loginViaGoogle();
+    }
+
+    loginViaFacebook() {
+        this.authenticationService.loginViaFacebook();
+    }
 }

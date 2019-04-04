@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ModalService } from '../../../bulma/modal/services/modal.service';
 import { MapInfo } from '../../models/map';
 import { MapService } from '../../services/map.service';
 
@@ -13,10 +14,15 @@ export class MapListComponent implements OnInit {
 
     constructor(
         private mapsService: MapService,
+        private modalService: ModalService,
     ) {
     }
 
     ngOnInit() {
         this.maps$ = this.mapsService.getAll();
+    }
+
+    cheese() {
+        this.modalService.openDialog('cheese').subscribe(console.log);
     }
 }

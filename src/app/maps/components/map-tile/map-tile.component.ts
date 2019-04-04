@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalService } from '../../../bulma/modal/services/modal.service';
 import { MapInfo } from '../../models/map';
 import { MapService } from '../../services/map.service';
 
@@ -14,6 +15,7 @@ export class MapTileComponent implements OnInit {
 
     constructor(
         private mapService: MapService,
+        private modalService: ModalService,
     ) {
     }
 
@@ -21,6 +23,11 @@ export class MapTileComponent implements OnInit {
     }
 
     deleteMap() {
-        this.mapService.delete(this.map);
+        this.modalService.openDialog('Are you sure you want to delete this map?', 'Delete map').subscribe(result => {
+            if (result) {
+                this.mapService.delete(this.map);
+            }
+        });
+
     }
 }

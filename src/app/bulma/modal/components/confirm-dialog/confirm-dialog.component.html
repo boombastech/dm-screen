@@ -1,0 +1,16 @@
+<div class="modal is-active">
+    <div (click)="backgroundClick()" class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">{{ title }}</p>
+            <button class="delete" aria-label="close" (click)="cancel()"></button>
+        </header>
+        <section class="modal-card-body">
+            {{ content }}
+        </section>
+        <footer class="modal-card-foot">
+            <button (click)="confirm()" class="button is-success">Confirm</button>
+            <button (click)="cancel()" class="button">Cancel</button>
+        </footer>
+    </div>
+</div>

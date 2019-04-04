@@ -1,5 +1,4 @@
-<nav *ngIf="user$ | async as user"
-     class="navbar is-fixed-top is-light"
+<nav class="navbar is-fixed-top is-light"
      role="navigation"
      aria-label="main navigation">
     <div class="navbar-brand">
@@ -48,17 +47,26 @@
         </div>
 
         <div class="navbar-end">
-            <div class="navbar-item" *ngIf="!user">
-                <div class="buttons">
-                    <a class="button is-primary" routerLink="/login" (click)="toggleMenu()">
-                        <span class="icon">
-                            <i class="fas fa-sign-in-alt"></i>
-                        </span>
-                        <span>Log in</span>
+            <div class="navbar-item has-dropdown is-hoverable" *ngIf="!(user$ | async)">
+                <a class="navbar-link" (click)="toggleMenu()">
+                    <span class="icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </span>
+                    Log in
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" (click)="loginViaGoogle(); toggleMenu()">
+                        <span>...via Google</span>
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item" (click)="loginViaFacebook(); toggleMenu()">
+                        <span>...via Facebook</span>
                     </a>
                 </div>
             </div>
-            <div class="navbar-item has-dropdown is-hoverable" *ngIf="user">
+
+            <div class="navbar-item has-dropdown is-hoverable" *ngIf="user$ | async as user">
                 <a class="navbar-link" (click)="toggleMenu()">
                     <span class="icon">
                         <i class="fas fa-user"></i>

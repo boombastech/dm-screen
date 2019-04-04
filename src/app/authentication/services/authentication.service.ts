@@ -34,7 +34,7 @@ export class AuthenticationService {
         );
     }
 
-    getUser(): Observable<User | undefined> {
+    getUser(): Observable<User> {
         return this.userStateObservable.pipe(
             map(state => state.activeUser),
         );
