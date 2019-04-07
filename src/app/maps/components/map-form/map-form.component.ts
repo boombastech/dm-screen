@@ -36,6 +36,10 @@ export class MapFormComponent implements OnInit {
             description: this.mapInfo.description,
             downloadUrl: [this.mapInfo.downloadUrl, Validators.required],
         });
+
+        if (this.mapInfo.downloadUrl) {
+            this.uploading = true;
+        }
     }
 
     onFileUpload(fileList: FileList) {
