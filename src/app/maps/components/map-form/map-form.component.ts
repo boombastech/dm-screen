@@ -32,7 +32,6 @@ export class MapFormComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.formBuilder.group({
-            id: this.mapInfo.id ? this.mapInfo.id : this.mapsService.createId(),
             name: [this.mapInfo.name, Validators.required],
             description: this.mapInfo.description,
             downloadUrl: [this.mapInfo.downloadUrl, Validators.required],
@@ -41,7 +40,7 @@ export class MapFormComponent implements OnInit {
 
     onFileUpload(fileList: FileList) {
         this.uploading = true;
-        const angularFireUploadTaskObservable = this.mapsService.upload(fileList.item(0), this.form.controls.id.value);
+        const angularFireUploadTaskObservable = this.mapsService.upload(fileList.item(0), this.mapInfo.id);
         angularFireUploadTaskObservable.subscribe(task => {
             this.percentage$ = task.percentageChanges();
             task.then(finishedTask => finishedTask.ref.getDownloadURL())
@@ -53,7 +52,6 @@ export class MapFormComponent implements OnInit {
         this.submitted = true;
         this.mapsService.save({
             ...this.mapInfo,
-            id: this.form.controls.id.value,
             name: this.form.controls.name.value,
             description: this.form.controls.description.value,
             downloadUrl: this.form.controls.downloadUrl.value,

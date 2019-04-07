@@ -12,9 +12,15 @@
             <div class="navbar-item">
                 <div class="buttons">
                     <a class="button is-primary" (click)="addMarker()">
+                        <span class="icon">
+                            <i class="fas fa-plus"></i>
+                        </span>
                         <strong>Add marker</strong>
                     </a>
                 </div>
+            </div>
+            <div class="navbar-item">
+                <input class="input" type="text" placeholder="Search markers"/>
             </div>
             <div class="navbar-item">
                 <span class="icon" (click)="zoomOut()">

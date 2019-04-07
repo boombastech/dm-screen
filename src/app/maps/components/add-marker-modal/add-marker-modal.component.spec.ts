@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LibraryComponent } from './library.component';
+import { AddMarkerModalComponent } from './add-marker-modal.component';
 
-describe('LibraryComponent', () => {
-  let component: LibraryComponent;
-  let fixture: ComponentFixture<LibraryComponent>;
+describe('AddMarkerModalComponent', () => {
+  let component: AddMarkerModalComponent;
+  let fixture: ComponentFixture<AddMarkerModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LibraryComponent ]
+      declarations: [ AddMarkerModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LibraryComponent);
+    fixture = TestBed.createComponent(AddMarkerModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

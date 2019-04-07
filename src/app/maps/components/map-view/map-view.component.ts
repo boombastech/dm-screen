@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { flatMap, map } from 'rxjs/operators';
+import { ModalService } from '../../../bulma/modal/services/modal.service';
 import { MapInfo } from '../../models/map';
 import { Marker } from '../../models/marker';
 import { MapService } from '../../services/map.service';
 import { MarkerService } from '../../services/marker.service';
+import { AddMarkerModalComponent } from '../add-marker-modal/add-marker-modal.component';
 
 @Component({
     selector: 'app-home',
@@ -21,6 +23,7 @@ export class MapViewComponent implements OnInit {
         private mapsService: MapService,
         private markerService: MarkerService,
         private route: ActivatedRoute,
+        private modalService: ModalService,
     ) {
     }
 
@@ -36,14 +39,16 @@ export class MapViewComponent implements OnInit {
     }
 
     placeLocationMarker(event: MouseEvent, mapId: string) {
-        console.log(`coords - x: ${event.offsetX}, y: ${event.offsetY}`);
         if (this.addMarkerFlag) {
-            const waypoint: Marker = {
+            const marker: Marker = {
+                id: this.markerService.createId(),
                 mapId,
                 coordinates: { x: event.offsetX, y: event.offsetY },
-                name: 'New Waypoint',
+                name: '',
             };
-            this.markerService.save(waypoint);
+            this.modalService.openModal(AddMarkerModalComponent, {inputs: {marker}}).subscribe(() => {
+                this.addMarkerFlag = false;
+            });
         }
     }
 }
