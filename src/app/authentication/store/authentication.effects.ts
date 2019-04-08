@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 import { FirebaseAuthenticationService } from '../../firebase/authentication/firebase-authentication.service';
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
+import { LoadLocationsAction } from '../../locations/store/actions';
 import { LoadMapsAction } from '../../maps/map-store/map.actions';
 import { LoadMarkersAction } from '../../maps/marker-store/marker.actions';
 import { User } from '../models/user';
@@ -45,6 +46,7 @@ export class AuthenticationEffects {
                         new LoadUserDetailsSuccessAction(user),
                         new LoadMapsAction(),
                         new LoadMarkersAction(),
+                        new LoadLocationsAction(),
                     ]),
                 ),
             ));
