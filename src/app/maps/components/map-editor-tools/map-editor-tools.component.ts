@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Marker } from '../../models/marker';
+import { MarkerService } from '../../services/marker.service';
 
 @Component({
     selector: 'app-map-editor-tools',
@@ -7,21 +10,23 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class MapEditorToolsComponent implements OnInit {
 
-    @Input()
-    zoom = 1;
+    @Input() zoom = 1;
+    @Input() mapId: string;
 
-    @Output()
-    zoomChange: EventEmitter<number> = new EventEmitter();
+    @Output() zoomChange: EventEmitter<number> = new EventEmitter();
+    @Output() addMarkerFlag: EventEmitter<void> = new EventEmitter();
 
-    @Output()
-    addMarkerFlag: EventEmitter<void> = new EventEmitter();
-
+    markers$: Observable<Marker[]>;
     step = 0.01;
+    searchFilter = '';
 
-    constructor() {
+    constructor(
+        private markerService: MarkerService,
+    ) {
     }
 
     ngOnInit() {
+        this.markers$ = this.markerService.getAll(this.mapId);
     }
 
     addMarker() {

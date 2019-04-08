@@ -15,6 +15,8 @@
 </section>
 
 <app-map-editor-tools
+        *ngIf="map$ | async as map"
         [(zoom)]="customZoom"
+        [mapId]="map.id"
         (addMarkerFlag)="handleAddMarker()"
 ></app-map-editor-tools>

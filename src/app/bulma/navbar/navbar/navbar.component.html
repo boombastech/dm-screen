@@ -5,7 +5,7 @@
         <a
                 class="navbar-item"
                 routerLink="/">
-            <h1 class="title">DM Screen</h1>
+            <h1 class="title">Inside the Screen</h1>
         </a>
 
         <a
@@ -24,26 +24,89 @@
 
     <div id="navbarBasicExample" class="navbar-menu" [ngClass]="{'is-active': showMenu}">
         <div class="navbar-start">
-            <a routerLink="/maps/library" class="navbar-item" (click)="toggleMenu()">
-                <span class="icon">
-                    <i class="fas fa-home"></i>
-                </span>
-                <span>Home</span>
-            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link" (click)="toggleMenu()">
+                    <span class="icon">
+                        <i class="fas fa-book"></i>
+                    </span>
+                    <span>Campaigns</span>
+                </a>
 
-            <a routerLink="/maps/library" class="navbar-item" (click)="toggleMenu()">
-                <span class="icon">
-                    <i class="fas fa-map-marker-alt"></i>
-                </span>
-                <span>Maps</span>
-            </a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item is-static">
+                        <span>Coming soon...</span>
+                    </a>
+                </div>
+            </div>
 
-            <a routerLink="/maps/library" class="navbar-item" (click)="toggleMenu()">
-                <span class="icon">
-                    <i class="fas fa-users"></i>
-                </span>
-                <span>NPCs</span>
-            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-link" (click)="toggleMenu()">
+                    <span class="icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </span>
+                    <span>Maps</span>
+                </div>
+
+                <div class="navbar-dropdown">
+                    <a routerLink="/maps/library" class="navbar-item is-static" (click)="toggleMenu()">
+                        <span class="icon">
+                            <i class="fas fa-atlas"></i>
+                        </span>
+                        <span>Library</span>
+                    </a>
+                    <a routerLink="/maps/create" class="navbar-item is-static" (click)="toggleMenu()">
+                        <span class="icon">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span>Create Map</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link" (click)="toggleMenu()">
+                    <span class="icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </span>
+                    <span>Locations</span>
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item is-static">
+                        <span>Coming soon...</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link" (click)="toggleMenu()">
+                    <span class="icon">
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <span>NPCs</span>
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item is-static">
+                        <span>Coming soon...</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link" (click)="toggleMenu()">
+                    <span class="icon">
+                        <i class="fas fa-handshake"></i>
+                    </span>
+                    <span>Factions</span>
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item is-static">
+                        <span>Coming soon...</span>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="navbar-end">
@@ -52,7 +115,7 @@
                     <span class="icon">
                         <i class="fas fa-sign-in-alt"></i>
                     </span>
-                    Log in
+                    <span>Log in</span>
                 </a>
 
                 <div class="navbar-dropdown">
@@ -71,7 +134,7 @@
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
-                    {{ user.displayName }}
+                    <span>{{ user.displayName }}</span>
                 </a>
 
                 <div class="navbar-dropdown">

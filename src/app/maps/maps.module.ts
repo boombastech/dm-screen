@@ -15,6 +15,7 @@ import { MapTileComponent } from './components/map-tile/map-tile.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
 import { MarkerContainerComponent } from './components/marker-container/marker-container.component';
 import { MarkerComponent } from './components/marker/marker.component';
+import { MarkerFilterPipe } from './pipes/marker-filter.pipe';
 import { MapService } from './services/map.service';
 import { MarkerService } from './services/marker.service';
 
@@ -30,6 +31,7 @@ import { MarkerService } from './services/marker.service';
         MarkerContainerComponent,
         MarkerComponent,
         AddMarkerModalComponent,
+        MarkerFilterPipe,
     ],
     imports: [
         BrowserModule,
