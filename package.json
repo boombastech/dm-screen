@@ -25,6 +25,7 @@
     "@ngrx/store": "^7.3.0",
     "@ngrx/store-devtools": "^7.3.0",
     "bulma": "^0.7.4",
+    "bulma-dashboard": "^0.1.40",
     "core-js": "^2.5.4",
     "firebase": "^5.9.0",
     "rxjs": "~6.3.3",

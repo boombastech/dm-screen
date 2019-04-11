@@ -14,12 +14,14 @@ import { LoggedInGuard } from './guards/logged-in.guard';
 import { MapsModule } from './maps/maps.module';
 import { RootStoreModule } from './root-store/root-store.module';
 import { SimpleModalComponent } from './simple-modal/simple-modal.component';
+import { PrototypeComponent } from './prototype/prototype.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         SimpleModalComponent,
+        PrototypeComponent,
     ],
     imports: [
         BrowserModule,

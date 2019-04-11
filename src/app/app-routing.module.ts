@@ -5,6 +5,7 @@ import { CreateMapComponent } from './maps/components/create-map/create-map.comp
 import { EditMapComponent } from './maps/components/edit-map/edit-map.component';
 import { MapListComponent } from './maps/components/map-list/map-list.component';
 import { MapViewComponent } from './maps/components/map-view/map-view.component';
+import { PrototypeComponent } from './prototype/prototype.component';
 
 const routes: Routes = [
     {
@@ -13,6 +14,10 @@ const routes: Routes = [
             {
                 path: '',
                 component: MapViewComponent,
+            },
+            {
+                path: 'prototype',
+                component: PrototypeComponent,
             },
             {
                 path: 'login',

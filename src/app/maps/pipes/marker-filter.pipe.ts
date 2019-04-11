@@ -7,8 +7,9 @@ import { Marker } from '../models/marker';
 export class MarkerFilterPipe implements PipeTransform {
 
     transform(value: Marker[], term: string) {
-        return value.filter(marker => {
-            return marker.name.toLowerCase().indexOf(term) >= 0;
-        });
+        return value;
+        // return value.filter(marker => {
+        //     return marker.name.toLowerCase().indexOf(term) >= 0;
+        // });
     }
 }

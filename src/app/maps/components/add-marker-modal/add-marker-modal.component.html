@@ -21,48 +21,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label"><span class="icon is-small is-left">
-                        <i class="fas"
-                           [ngClass]="form.controls.icon.value"
-                           [ngStyle]="{'color': form.controls.colour.value}"></i>
-                    </span>Icon</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <div class="select">
-                                    <select formControlName="icon">
-                                        <option *ngFor="let icon of icons" [value]="icon.value">{{icon.name}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <div class="select">
-                                    <select formControlName="colour">
-                                        <option *ngFor="let colour of colours" [value]="colour.hex">{{colour.name}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label for="form.description" class="label">Description</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <textarea id="form.description" class="textarea" formControlName="description"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="modal-card-foot">
                 <button type="submit" class="button is-success">Save</button>
