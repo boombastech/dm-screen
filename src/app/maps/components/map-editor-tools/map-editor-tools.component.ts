@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Marker } from '../../models/marker';
-import { MarkerService } from '../../services/marker.service';
+import { LocationInfo } from '../../../markers/models/locationInfo';
+import { MarkerService } from '../../../markers/services/marker.service';
 
 @Component({
     selector: 'app-map-editor-tools',
@@ -16,7 +16,7 @@ export class MapEditorToolsComponent implements OnInit {
     @Output() zoomChange: EventEmitter<number> = new EventEmitter();
     @Output() addMarkerFlag: EventEmitter<void> = new EventEmitter();
 
-    markers$: Observable<Marker[]>;
+    markers$: Observable<LocationInfo[]>;
     step = 0.01;
     searchFilter = '';
 

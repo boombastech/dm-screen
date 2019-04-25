@@ -11,9 +11,7 @@ export enum AuthenticationActionTypes {
     LoginSuccess = 'LoginSuccess',
     Logout = 'Logout',
     LogoutSuccess = 'LogoutSuccess',
-    WatchUser = 'WatchUser',
-    WatchUserSuccess = 'WatchUserSuccess',
-    WatchUserFailure = 'WatchUserFailure',
+    AuthenticationError = 'AuthenticationError',
 }
 
 export class LoadUserAction implements Action {
@@ -67,6 +65,10 @@ export class LogoutSuccessAction implements Action {
     readonly type = AuthenticationActionTypes.LogoutSuccess;
 }
 
+export class AuthenticationErrorAction implements Action {
+    readonly type = AuthenticationActionTypes.AuthenticationError;
+}
+
 export type AuthenticationAction =
     | LoadUserAction
     | LoadUserSuccessAction
@@ -77,4 +79,5 @@ export type AuthenticationAction =
     | LoginSuccessAction
     | LogoutAction
     | LogoutSuccessAction
+    | AuthenticationErrorAction
     ;

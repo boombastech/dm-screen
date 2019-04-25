@@ -6,8 +6,8 @@ import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../../authentication/services/authentication.service';
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
 import { FirebaseStorageService } from '../../firebase/storage/firebase-storage.service';
-import { DeleteMapAction, SaveMapAction } from '../map-store/map.actions';
-import { selectMapById, selectMaps } from '../map-store/map.reducer';
+import { DeleteMapAction, SaveMapAction } from '../store/map.actions';
+import { selectMapById, selectMaps } from '../store/map.reducer';
 import { MapInfo } from '../models/map';
 
 @Injectable()

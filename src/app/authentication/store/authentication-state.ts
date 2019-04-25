@@ -1,6 +1,9 @@
 import { User } from '../models/user';
 
 export interface AuthenticationState {
-    isLoggedIn: boolean;
     activeUser?: User;
+    isLoggedIn: boolean;
+    isLoaded: boolean;
+    isLoading: boolean;
+    isError: boolean;
 }

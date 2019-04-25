@@ -1,0 +1,15 @@
+<label class="label">
+    {{ labelText }}
+    <div class="control has-icons-right">
+        <textarea
+                class="textarea"
+                [ngClass]="{'is-danger': control.invalid && control.dirty }"
+                [id]="id"
+                [formControl]="control"
+        ></textarea>
+        <span *ngIf="control.invalid && control.dirty" class="icon is-small is-right has-text-danger">
+            <i class="fas fa-exclamation-triangle"></i>
+        </span>
+    </div>
+    <span *ngIf="control.errors && control.errors['required'] && control.dirty" class="help is-danger">This field is required.</span>
+</label>

@@ -1,8 +1,31 @@
-//body {
-//  height: 100vh;
-//  width: 100vw;
-//  overflow: hidden;
-//}
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
 
 /* You can add global styles to this file, and also import other style files */
-@import "~bulma/css/bulma.css";
+@import "~bulma/bulma";
+
+.columns {
+  &.is-fullheight {
+    min-height: calc(100vh - (#{$navbar-height} - .75rem));
+    max-height: calc(100vh - (#{$navbar-height} - .75rem));
+    height: calc(100vh - (#{$navbar-height} - .75rem));
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+
+    .column {
+      overflow-y: auto
+    }
+  }
+}
+
+.menu {
+  padding: 5px;
+
+  .menu-label {
+    color: #ABCDEF;
+  }
+}

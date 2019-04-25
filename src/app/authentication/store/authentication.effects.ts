@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 import { FirebaseAuthenticationService } from '../../firebase/authentication/firebase-authentication.service';
 import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
-import { LoadLocationsAction } from '../../locations/store/actions';
-import { LoadMapsAction } from '../../maps/map-store/map.actions';
-import { LoadMarkersAction } from '../../maps/marker-store/marker.actions';
+import { LoadMapsAction } from '../../maps/store/map.actions';
+import { LoadMarkersAction } from '../../markers/marker-store/marker.actions';
 import { User } from '../models/user';
-import { AuthenticationActionTypes, LoadUserAction, LoadUserDetailsAction, LoadUserDetailsSuccessAction, LoadUserSuccessAction, LoginSuccessAction, LoginViaFacebookAction, LoginViaGoogleAction, LogoutAction, LogoutSuccessAction } from './authentication.actions';
+import { AuthenticationActionTypes, AuthenticationErrorAction, LoadUserAction, LoadUserDetailsAction, LoadUserDetailsSuccessAction, LoadUserSuccessAction, LoginSuccessAction, LoginViaFacebookAction, LoginViaGoogleAction, LogoutAction, LogoutSuccessAction } from './authentication.actions';
 
 
 @Injectable()
@@ -32,6 +31,7 @@ export class AuthenticationEffects {
                         new LoadUserSuccessAction(!!user),
                         new LoadUserDetailsAction(user ? user.uid : ''),
                     ]),
+                    catchError(() => of(new AuthenticationErrorAction())),
                 ),
             ));
 
@@ -46,8 +46,8 @@ export class AuthenticationEffects {
                         new LoadUserDetailsSuccessAction(user),
                         new LoadMapsAction(),
                         new LoadMarkersAction(),
-                        new LoadLocationsAction(),
                     ]),
+                    catchError(() => of(new AuthenticationErrorAction())),
                 ),
             ));
 
@@ -58,6 +58,7 @@ export class AuthenticationEffects {
             switchMap(() => this.authenticationService.loginViaGoogle()
                 .pipe(
                     map(() => new LoginSuccessAction()),
+                    catchError(() => of(new AuthenticationErrorAction())),
                 ),
             ));
 
@@ -68,6 +69,7 @@ export class AuthenticationEffects {
             switchMap(() => this.authenticationService.loginViaFacebook()
                 .pipe(
                     map(() => new LoginSuccessAction()),
+                    catchError(() => of(new AuthenticationErrorAction())),
                 ),
             ));
 
@@ -78,6 +80,7 @@ export class AuthenticationEffects {
             switchMap(() => this.authenticationService.logout()
                 .pipe(
                     map(() => new LogoutSuccessAction()),
+                    catchError(() => of(new AuthenticationErrorAction())),
                 ),
             ));
 }

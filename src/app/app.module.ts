@@ -11,25 +11,28 @@ import { ModalModule } from './bulma/modal/modal.module';
 import { NavbarModule } from './bulma/navbar/navbar.module';
 import { FirebaseFirestoreModule } from './firebase/firestore/firebase-firestore.module';
 import { LoggedInGuard } from './guards/logged-in.guard';
+import { LocationModule } from './locations/location.module';
 import { MapsModule } from './maps/maps.module';
+import { NpcsModule } from './npcs/npcs.module';
+import { PrototypeModule } from './prototype/prototype.module';
 import { RootStoreModule } from './root-store/root-store.module';
 import { SimpleModalComponent } from './simple-modal/simple-modal.component';
-import { PrototypeComponent } from './prototype/prototype.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         SimpleModalComponent,
-        PrototypeComponent,
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule,
+        NpcsModule,
         NavbarModule,
         MapsModule,
         ModalModule,
         FirebaseFirestoreModule,
+        LocationModule,
+        PrototypeModule,
         AngularFireModule.initializeApp({
             apiKey: 'AIzaSyDUN5rqFWZU1C3NR508QGMihonH8eSHF0Q',
             authDomain: 'dm-screen-66ebf.firebaseapp.com',
@@ -40,6 +43,7 @@ import { PrototypeComponent } from './prototype/prototype.component';
         }),
         RootStoreModule,
         !environment.production ? StoreDevtoolsModule.instrument() : [],
+        AppRoutingModule,
     ],
     entryComponents: [
         SimpleModalComponent,

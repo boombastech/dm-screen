@@ -1,0 +1,17 @@
+<label class="label">
+    {{ labelText }}
+    <div class="control has-icons-right">
+        <input
+                class="input"
+                [ngClass]="{'is-danger': control.errors && control.dirty }"
+                [type]="type"
+                [formControl]="control"
+        />
+        <span class="icon is-small is-right has-text-danger" *ngIf="control.errors && control.dirty">
+            <i class="fas fa-exclamation-triangle"></i>
+        </span>
+    </div>
+    <span class="help is-danger" *ngIf="control.errors && control.errors['required'] && control.dirty">
+        This field is required.
+    </span>
+</label>
